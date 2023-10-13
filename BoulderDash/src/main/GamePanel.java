@@ -24,13 +24,8 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//WORLD SETTINGS
 	
-	int x = tileSize;
-	int y = tileSize;
-	int speed = tileSize;
-	
-	
 	//FPS
-	int fps = 7;
+	int fps = 10;
 	
 	
 	KeyHandler keyH = new KeyHandler();
@@ -58,11 +53,10 @@ public class GamePanel extends JPanel implements Runnable{
 		double nextDrawTime = System.nanoTime() + drawInterval;
 		
 		while(gameThread != null) {
+
 		
 			//1. UPDATE: update information such as character positions
-
-				update();
-			
+			update();
 			
 		
 			//2. DRAW: draw the screen with the updated information

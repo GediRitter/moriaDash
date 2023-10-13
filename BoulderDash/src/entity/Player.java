@@ -56,23 +56,23 @@ public class Player extends Entity {
 	public void update() {
 		
 		if(keyH.upPressed) {
-			y -= speed;
 			direction = "up";
+			updatePosition();
 			animation();
 		}
 		else if(keyH.downPressed) {
-			y += speed;
 			direction = "down";
+			updatePosition();
 			animation();
 		}
 		else if(keyH.leftPressed) {
-			x -= speed;
 			direction = "left";
+			updatePosition();
 			animation();
 		}
 		else if(keyH.rightPressed) {
-			x += speed;
 			direction = "right";
+			updatePosition();
 			animation();
 		}
 		else {
@@ -110,11 +110,32 @@ public class Player extends Entity {
 	}
 	
 	public void animation() {
-		spriteCounter++;
-		if(spriteCounter > 10) {
-			if(spriteNum == 1) spriteNum = 2;
-			else if(spriteNum == 2) spriteNum = 1;
-			spriteCounter = 0;
+		if(spriteNum == 1) spriteNum = 2;
+		else if(spriteNum == 2) spriteNum = 1;
+	}
+	
+	public void updatePosition() {
+		
+		positionCounter++;
+		
+		if(positionCounter == 2) {
+			switch(direction) {
+			case "idle":
+				break;
+			case "up":
+				y -= speed;
+				break;
+			case "down":
+				y += speed;
+				break;
+			case "left":
+				x -= speed;
+				break;
+			case "right":
+				x += speed;
+				break;
+			}
+			positionCounter = 0;
 		}
 	}
 
