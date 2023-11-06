@@ -56,7 +56,7 @@ public class Player extends Entity {
 	public void update() {
 		
 		if(keyH.upPressed) {
-			direction = "up";
+			direction = "up"; 
 			updatePosition();
 			animation();
 		}
