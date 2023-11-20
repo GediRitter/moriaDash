@@ -24,8 +24,8 @@ public class Player extends Entity {
 	}
 	
 	public void setDefaultValues() {
-		x = gp.tileSize;
-		y = gp.tileSize;
+		x = gp.tileSize * 2;
+		y = gp.tileSize * 2;
 		speed = gp.tileSize;
 		
 		direction = "idle";
