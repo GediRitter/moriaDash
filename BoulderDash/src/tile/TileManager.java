@@ -69,6 +69,8 @@ public class TileManager {
 					String [] numbers = line.split(" ");
 					int num = Integer.parseInt(numbers[col]);
 					
+					if(num == 4) num = 0;
+					
 					mapTileNum[col][row] = num;
 					col++;
 				}
