@@ -27,11 +27,13 @@ public class GamePanel extends JPanel implements Runnable{
 	//WORLD SETTINGS
 	
 	//FPS
-	int fps = 15;
+	int fps = 13;
 	
 	
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread;
+	
+	public CollisionChecker checker = new CollisionChecker(this);
 	
 	TileManager tm = new TileManager(this);
 	Player player = new Player(this, keyH);
@@ -57,28 +59,27 @@ public class GamePanel extends JPanel implements Runnable{
 		double nextDrawTime = System.nanoTime() + drawInterval;
 		
 		while(gameThread != null) {
-
 		
-			//1. UPDATE: update information such as character positions
-			update();
+				//1. UPDATE: update information such as character positions
+				update();
+				
 			
-		
-			//2. DRAW: draw the screen with the updated information
-			repaint();
-			
-			try {
+				//2. DRAW: draw the screen with the updated information
+				repaint();
 				
-				double remainingTime = nextDrawTime - System.nanoTime();
-				remainingTime = remainingTime / 1000000;
-				if(remainingTime < 0) remainingTime = 0;
-				
-				Thread.sleep((long)remainingTime);
-				
-				nextDrawTime += drawInterval;
-				
-			} catch(InterruptedException e){
-				e.printStackTrace();
-			}
+				try {
+					
+					double remainingTime = nextDrawTime - System.nanoTime();
+					remainingTime = remainingTime / 1000000;
+					if(remainingTime < 0) remainingTime = 0;
+					
+					Thread.sleep((long)remainingTime);
+					
+					nextDrawTime += drawInterval;
+					
+				} catch(InterruptedException e){
+					e.printStackTrace();
+				}
 		}
 				
 	}

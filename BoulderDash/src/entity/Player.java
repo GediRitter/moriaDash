@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -15,6 +16,9 @@ public class Player extends Entity {
 	GamePanel gp;
 	KeyHandler keyH;
 	
+	public boolean keyPressed;
+	public int keyCode;
+	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		this.gp = gp;
 		this.keyH = keyH;
@@ -26,6 +30,8 @@ public class Player extends Entity {
 	public void setDefaultValues() {
 		x = gp.tileSize * 2;
 		y = gp.tileSize * 2;
+		col = x / gp.tileSize;
+		row = y / gp.tileSize;
 		speed = gp.tileSize;
 		
 		direction = "idle";
@@ -55,29 +61,52 @@ public class Player extends Entity {
 	
 	public void update() {
 		
-		if(keyH.upPressed) {
-			direction = "up"; 
-			updatePosition();
-			animation();
-		}
-		else if(keyH.downPressed) {
-			direction = "down";
-			updatePosition();
-			animation();
-		}
-		else if(keyH.leftPressed) {
-			direction = "left";
-			updatePosition();
-			animation();
-		}
-		else if(keyH.rightPressed) {
-			direction = "right";
-			updatePosition();
-			animation();
-		}
-		else {
-			direction = "idle";
-		}
+		collisionOn = false;
+		
+		
+		if(keyH.keyPressed) keyPressed = true;
+		
+		if(keyPressed && keyH.keyCode != 0) keyCode = keyH.keyCode;
+		
+		
+		if(keyCode == KeyEvent.VK_W) direction = "up";
+		if(keyCode == KeyEvent.VK_S) direction = "down";
+		if(keyCode == KeyEvent.VK_A) direction = "left";		
+		if(keyCode == KeyEvent.VK_D) direction = "right"; 
+		if(keyCode == 0) direction = "idle"; 
+		
+		gp.checker.checkTile(this);
+		updatePosition();
+		animation();
+		
+		
+		
+//		if(keyH.upPressed) {
+//			direction = "up"; 
+//			updatePosition();
+//			animation();
+//		}
+//		else if(keyH.downPressed) {
+//			direction = "down";
+//			updatePosition();
+//			animation();
+//		}
+//		else if(keyH.leftPressed) {
+//			direction = "left";
+//			updatePosition();
+//			animation();
+//		}
+//		else if(keyH.rightPressed) {
+//			direction = "right";
+//			updatePosition();
+//			animation();
+//		}
+//		else {
+//			direction = "idle";
+//		}
+		
+		col = x / gp.tileSize;
+		row = y / gp.tileSize;
 	}
 	
 	public void draw(Graphics2D g2) {
@@ -123,18 +152,21 @@ public class Player extends Entity {
 			case "idle":
 				break;
 			case "up":
-				y -= speed;
+				if(!collisionOn) y -= speed;
 				break;
 			case "down":
-				y += speed;
+				if(!collisionOn) y += speed;
 				break;
 			case "left":
-				x -= speed;
+				if(!collisionOn) x -= speed;
 				break;
 			case "right":
-				x += speed;
+				if(!collisionOn) x += speed;
 				break;
 			}
+			keyPressed = false;
+			keyCode = 0;
+			
 			positionCounter = 0;
 		}
 	}
