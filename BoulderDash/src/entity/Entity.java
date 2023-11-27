@@ -15,6 +15,6 @@ public class Entity {
 	public int positionCounter = 0;
 	public int spriteNum = 1;
 	
-	public boolean collisionOn = false;
+	public boolean blocked = false;
 
 }

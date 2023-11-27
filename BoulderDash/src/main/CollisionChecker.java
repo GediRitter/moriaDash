@@ -23,19 +23,23 @@ public class CollisionChecker {
 		switch(ent.direction) {
 		
 		case "up":
-			if(tileAbove.collision) ent.collisionOn = true;
+			if(tileAbove.collision) ent.blocked = true;
+			if(tileAbove.name == "dirt") gp.tm.mapTileNum[ent.col][ent.row - 1] = 0;
 			break;
 			
 		case "down":
-			if(tileBeneath.collision) ent.collisionOn = true;
+			if(tileBeneath.collision) ent.blocked = true;
+			if(tileBeneath.name == "dirt") gp.tm.mapTileNum[ent.col][ent.row + 1] = 0;
 			break;
 			
 		case "left":
-			if(tileLeft.collision) ent.collisionOn = true;
+			if(tileLeft.collision) ent.blocked = true;
+			if(tileLeft.name == "dirt") gp.tm.mapTileNum[ent.col - 1][ent.row] = 0;
 			break;
 			
 		case "right":
-			if(tileRight.collision) ent.collisionOn = true;
+			if(tileRight.collision) ent.blocked = true;
+			if(tileRight.name == "dirt") gp.tm.mapTileNum[ent.col + 1][ent.row] = 0;
 			break;
 		}
 	}

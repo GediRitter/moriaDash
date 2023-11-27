@@ -61,7 +61,7 @@ public class Player extends Entity {
 	
 	public void update() {
 		
-		collisionOn = false;
+		blocked = false;
 		
 		
 		if(keyH.keyPressed) keyPressed = true;
@@ -152,16 +152,16 @@ public class Player extends Entity {
 			case "idle":
 				break;
 			case "up":
-				if(!collisionOn) y -= speed;
+				if(!blocked) y -= speed;
 				break;
 			case "down":
-				if(!collisionOn) y += speed;
+				if(!blocked) y += speed;
 				break;
 			case "left":
-				if(!collisionOn) x -= speed;
+				if(!blocked) x -= speed;
 				break;
 			case "right":
-				if(!collisionOn) x += speed;
+				if(!blocked) x += speed;
 				break;
 			}
 			keyPressed = false;
