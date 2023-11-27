@@ -30,12 +30,15 @@ public class GamePanel extends JPanel implements Runnable{
 	int fps = 13;
 	
 	
+	//SYSTEM
+	TileManager tm = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
+	Sound sound = new Sound();
+	public CollisionChecker checker = new CollisionChecker(this);
 	Thread gameThread;
 	
-	public CollisionChecker checker = new CollisionChecker(this);
 	
-	TileManager tm = new TileManager(this);
+	//ENTITY AND OBJECTS
 	Player player = new Player(this, keyH);
 	Rock rock = new Rock(this);
 	
@@ -45,6 +48,10 @@ public class GamePanel extends JPanel implements Runnable{
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
+	}
+	
+	public void setupGame() {
+		playMusic(0);
 	}
 	
 	public void startGameThread() {
@@ -102,4 +109,19 @@ public class GamePanel extends JPanel implements Runnable{
 		g2.dispose();
 	}
 	
+	
+	public void playMusic(int i) {
+		sound.setFile(i);
+		sound.play();
+		sound.loop();
+	}
+	
+	public void stopMusic() {
+		sound.stop();
+	}
+	
+	public void playSE(int i) {
+		sound.setFile(i);
+		sound.play();
+	}
 }

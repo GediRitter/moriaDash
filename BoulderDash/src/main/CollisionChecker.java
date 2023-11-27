@@ -24,22 +24,34 @@ public class CollisionChecker {
 		
 		case "up":
 			if(tileAbove.collision) ent.blocked = true;
-			if(tileAbove.name == "dirt") gp.tm.mapTileNum[ent.col][ent.row - 1] = 0;
+			if(tileAbove.name == "dirt") {
+				gp.tm.mapTileNum[ent.col][ent.row - 1] = 0;
+				gp.playSE(1);
+			}
 			break;
 			
 		case "down":
 			if(tileBeneath.collision) ent.blocked = true;
-			if(tileBeneath.name == "dirt") gp.tm.mapTileNum[ent.col][ent.row + 1] = 0;
+			if(tileBeneath.name == "dirt") {
+				gp.tm.mapTileNum[ent.col][ent.row + 1] = 0;
+				gp.playSE(1);
+			}
 			break;
 			
 		case "left":
 			if(tileLeft.collision) ent.blocked = true;
-			if(tileLeft.name == "dirt") gp.tm.mapTileNum[ent.col - 1][ent.row] = 0;
+			if(tileLeft.name == "dirt") {
+				gp.tm.mapTileNum[ent.col - 1][ent.row] = 0;
+				gp.playSE(1);
+			}
 			break;
 			
 		case "right":
 			if(tileRight.collision) ent.blocked = true;
-			if(tileRight.name == "dirt") gp.tm.mapTileNum[ent.col + 1][ent.row] = 0;
+			if(tileRight.name == "dirt") {
+				gp.tm.mapTileNum[ent.col + 1][ent.row] = 0;
+				gp.playSE(1);
+			}
 			break;
 		}
 	}
