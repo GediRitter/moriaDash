@@ -42,7 +42,7 @@ public class CollisionChecker {
 			if(tileLeft.collision) ent.blocked = true;
 			if(tileLeft.name == "dirt") {
 				gp.tm.mapTileNum[ent.col - 1][ent.row] = 0;
-				gp.playSE(1);
+				gp.playSE(0);
 			}
 			break;
 			
