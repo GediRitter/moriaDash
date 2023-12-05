@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
+import tile.Tile;
 
 public class Player extends Entity {
 	
@@ -18,6 +19,7 @@ public class Player extends Entity {
 	
 	public boolean keyPressed;
 	public int keyCode;
+	
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		this.gp = gp;
@@ -64,7 +66,10 @@ public class Player extends Entity {
 		blocked = false;
 		
 		
-		if(keyH.keyPressed) keyPressed = true;
+		if(keyH.keyPressed) {
+			keyPressed = true;
+			dirt = false;
+		}
 		
 		if(keyPressed && keyH.keyCode != 0) keyCode = keyH.keyCode;
 		
@@ -75,7 +80,7 @@ public class Player extends Entity {
 		if(keyCode == KeyEvent.VK_D) direction = "right"; 
 		if(keyCode == 0) direction = "idle"; 
 		
-		gp.checker.checkTile(this);
+		gp.checker.checkCollision(this);
 		updatePosition();
 		animation();
 		
@@ -148,6 +153,12 @@ public class Player extends Entity {
 		positionCounter++;
 		
 		if(positionCounter == 2) {
+
+			if(dirt) {
+				removeDirt();
+				blocked = false;
+			}
+			
 			switch(direction) {
 			case "idle":
 				break;
@@ -164,11 +175,37 @@ public class Player extends Entity {
 				if(!blocked) x += speed;
 				break;
 			}
+			
 			keyPressed = false;
 			keyCode = 0;
 			
 			positionCounter = 0;
 		}
+	}
+	
+	public void removeDirt() {
+		
+		switch(direction) {
+		case "idle":
+			break;
+		case "up":
+			gp.tm.mapTileNum[col][row - 1] = 0;
+			break;
+		case "down":
+			gp.tm.mapTileNum[col][row + 1] = 0;
+			break;
+		case "left":
+			gp.tm.mapTileNum[col - 1][row] = 0;
+			break;
+		case "right":
+			gp.tm.mapTileNum[col + 1][row] = 0;
+			break;
+		}
+		
+		gp.playSE(1);
+		dirt = false;
+		
+		
 	}
 
 }

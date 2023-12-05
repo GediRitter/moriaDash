@@ -42,12 +42,20 @@ public class TileManager {
 			
 			tile[2] = new Tile();
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tile/dirt.png"));
+			tile[2].removeable = true;
+			tile[2].collision = true;
 			tile[2].name = "dirt";
 			
 			tile[3] = new Tile();
 			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tile/bricks.png"));
 			tile[3].collision = true;
 			tile[3].name = "bricks";
+			
+			tile[4] = new Tile();
+			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tile/void.png"));
+			tile[4].collision = true;
+			tile[4].name = "rock";
+			tile[4].isObj = true;
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -68,12 +76,13 @@ public class TileManager {
 			while(row < gp.maxScreenRow) {
 				
 				String line = br.readLine();
+				String [] numbers = line.split(" ");
 				
 				while(col < gp.maxScreenCol) {
-					String [] numbers = line.split(" ");
+					
 					int num = Integer.parseInt(numbers[col]);
 					
-					if(num == 4) num = 0;
+//					if(num == 4) num = 0;
 					
 					mapTileNum[col][row] = num;
 					col++;
@@ -100,7 +109,7 @@ public class TileManager {
 			
 			int x = col * gp.tileSize;
 			int y = row * gp.tileSize;
-				
+			
 			g2.drawImage(tile[mapTileNum[col][row]].image, x, y, gp.tileSize, gp.tileSize, null);
 			col++;
 				

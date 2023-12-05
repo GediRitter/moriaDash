@@ -8,7 +8,9 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
-import entity.Rock;
+import object.ObjectManager;
+import object.Rock;
+import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -31,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	
 	//SYSTEM
-	TileManager tm = new TileManager(this);
+	public TileManager tm = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
 	Sound sound = new Sound();
 	public CollisionChecker checker = new CollisionChecker(this);
@@ -40,7 +42,8 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//ENTITY AND OBJECTS
 	Player player = new Player(this, keyH);
-	Rock rock = new Rock(this);
+	ObjectManager om = new ObjectManager(this);
+	public SuperObject [] obj = new SuperObject[30];
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -51,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void setupGame() {
+		om.loadObj();
 		playMusic(0);
 	}
 	
@@ -94,6 +98,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public void update() {
 		
 		player.update();
+		om.update();
 		
 	}
 	
@@ -104,9 +109,13 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		tm.draw(g2);
 		player.draw(g2);
-		rock.draw(g2);
+		om.draw(g2);
 		
 		g2.dispose();
+	}
+	
+	public void setObjects() {
+		
 	}
 	
 	

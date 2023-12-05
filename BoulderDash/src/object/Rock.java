@@ -1,20 +1,21 @@
-package entity;
+package object;
 
 import java.awt.Graphics2D;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.Entity;
 import main.GamePanel;
 
-public class Rock extends Entity {
+public class Rock extends SuperObject {
 
 	GamePanel gp;
 	
-	public Rock(GamePanel gp) {//, int x, int y
+	public Rock(GamePanel gp, int x, int y) {//
 		this.gp = gp;
 		
-		setDefaultValues(); //x, y
+		setValues(x, y); 
 		getRockImage();
 	}
 
@@ -22,24 +23,52 @@ public class Rock extends Entity {
 		
 		try {
 			
-			idle = ImageIO.read(getClass().getResourceAsStream("/otherEntities/rock.png"));
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/rock.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 	}
-
-	public void setDefaultValues() { //int x, int y
-//		super.x = x;
-//		super.y = y;
-		x = gp.tileSize * 4;
-		y = gp.tileSize * 5;
+ 
+	public void setValues(int x, int y) {
+		super.x = x;
+		super.y = y;
+		col = x / gp.tileSize;
+		row = y / gp.tileSize;
+	}
+	
+	public void update() {
 		
-		direction = "idle";
+		blocked = false;
+		blockedLeft = false;
+		blockedRight = false;
+		
+		gp.checker.checkCollisionObj(this);
+		
+		if(!blocked || !blockedLeft || !blockedRight) {
+			
+			positionCounter++;
+			
+			if(positionCounter == 3) {
+				
+				if(!blocked) y += gp.tileSize;
+				else if(!blockedLeft) x -= gp.tileSize;
+				else if(!blockedRight) x += gp.tileSize;
+				
+				gp.tm.mapTileNum[col][row] = 0;
+				
+				col = x / gp.tileSize;
+				row = y / gp.tileSize;
+				
+				gp.tm.mapTileNum[col][row] = 4;
+				
+				positionCounter = 0;
+			}
+		}
 	}
 	
 	public void draw(Graphics2D g2) {
-		g2.drawImage(idle, x, y, gp.tileSize, gp.tileSize, null);
+		g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
 	}
 }
