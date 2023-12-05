@@ -13,9 +13,9 @@ public class Sound {
 
 	public Sound() {
 		
-//		soundURL[0] = getClass().getResource("/sound/A Journey in the Dark 16bit.wav");
+		soundURL[0] = getClass().getResource("/sound/A Journey in the Dark 16bit.wav");
 //		soundURL[0] = getClass().getResource("/sound/The Bridge of Khazad Dum 16bit.wav");
-		soundURL[0] = getClass().getResource("/sound/Moria Mashup.wav");
+//		soundURL[0] = getClass().getResource("/sound/Moria Mashup.wav");
 		soundURL[1] = getClass().getResource("/sound/MudStep.wav");
 	}
 	
