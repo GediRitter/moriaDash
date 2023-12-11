@@ -57,6 +57,12 @@ public class TileManager {
 			tile[4].name = "rock";
 			tile[4].isObj = true;
 			
+			tile[5] = new Tile();
+			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tile/void.png"));
+			tile[5].collision = true;
+			tile[5].name = "mithril";
+			tile[5].isObj = true;
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

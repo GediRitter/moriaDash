@@ -38,7 +38,7 @@ public class ObjectManager {
 				counter++;
 			}
 			if(num == 5) {
-				gp.obj[counter] = new Rock(gp, col * gp.tileSize, row * gp.tileSize);
+				gp.obj[counter] = new Mithril(gp, col * gp.tileSize, row * gp.tileSize);
 				counter++;
 			}
 			

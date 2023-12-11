@@ -65,13 +65,13 @@ public class CollisionChecker {
 		else obj.falling = true;
 		
 		
-		if(!tileBeneath.isObj) obj.blockedLeft = true;
+		if(!tileBeneath.isObj && tileBeneath.name != "bricks") obj.blockedLeft = true;
 		else if(tileLeft.collision) obj.blockedLeft = true;
 		else if(leftDown.collision) obj.blockedLeft = true;
 		else if(isPlayer(obj.col, obj.row, -1, 0)) obj.blockedLeft = true;
 		else if(isPlayer(obj.col, obj.row, -1, 1)) obj.blockedLeft = true;
 		
-		if(!tileBeneath.isObj) obj.blockedRight = true;
+		if(!tileBeneath.isObj && tileBeneath.name != "bricks") obj.blockedRight = true;
 		else if(tileRight.collision)obj.blockedRight = true;
 		else if(rightDown.collision) obj.blockedRight = true;
 		else if(isPlayer(obj.col, obj.row, 1, 0)) obj.blockedRight = true;
