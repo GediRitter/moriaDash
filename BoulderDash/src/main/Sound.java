@@ -18,7 +18,7 @@ public class Sound {
 //		soundURL[0] = getClass().getResource("/sound/Moria Mashup.wav");
 		soundURL[1] = getClass().getResource("/sound/MudStep.wav");
 		
-	}
+	}//passiert was mein bre?
 	
 	public void setFile(int i) {
 		
