@@ -17,6 +17,7 @@ public class Sound {
 //		soundURL[0] = getClass().getResource("/sound/The Bridge of Khazad Dum 16bit.wav");
 //		soundURL[0] = getClass().getResource("/sound/Moria Mashup.wav");
 		soundURL[1] = getClass().getResource("/sound/MudStep.wav");
+		//comment to try smth
 	}
 	
 	public void setFile(int i) {
