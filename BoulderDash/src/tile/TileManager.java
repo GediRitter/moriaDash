@@ -37,29 +37,33 @@ public class TileManager {
 			
 			tile[1] = new Tile();
 			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tile/wall.png"));
-			tile[1].collision = true;
+			tile[1].collisionPlayer = true;
+			tile[1].collisionObj = true;
 			tile[1].name = "wall";
 			
 			tile[2] = new Tile();
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tile/dirt.png"));
 			tile[2].removeable = true;
-			tile[2].collision = true;
+			tile[2].collisionPlayer = true;
+			tile[2].collisionObj = true;
 			tile[2].name = "dirt";
 			
 			tile[3] = new Tile();
 			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tile/bricks.png"));
-			tile[3].collision = true;
+			tile[3].collisionPlayer = true;
+			tile[3].collisionObj = true;
 			tile[3].name = "bricks";
 			
 			tile[4] = new Tile();
 			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tile/void.png"));
-			tile[4].collision = true;
+			tile[4].collisionPlayer = true;
+			tile[4].collisionObj = true;
 			tile[4].name = "rock";
 			tile[4].isObj = true;
 			
 			tile[5] = new Tile();
 			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tile/void.png"));
-			tile[5].collision = true;
+			tile[5].collisionObj = true;
 			tile[5].name = "mithril";
 			tile[5].isObj = true;
 			

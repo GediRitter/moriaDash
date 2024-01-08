@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import entity.Entity;
+import main.CollisionChecker;
 import main.GamePanel;
 
 public class Mithril extends SuperObject {
@@ -66,10 +67,20 @@ public class Mithril extends SuperObject {
 				positionCounter = 0;
 			}
 		}
+		
+		
+		
+		gp.checker.collect(this);
+		
 	}
 	
 	public void draw(Graphics2D g2) {
 		g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+	}
+	
+	public void collect() {
+		gp.mithril++;
+		gp.obj[gp.searchObj(this)] = null;
 	}
 }
 

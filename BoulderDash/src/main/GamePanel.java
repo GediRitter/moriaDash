@@ -45,6 +45,9 @@ public class GamePanel extends JPanel implements Runnable{
 	ObjectManager om = new ObjectManager(this);
 	public SuperObject [] obj = new SuperObject[30];
 	
+	//STATS
+	public int mithril = 0;
+	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.black);
@@ -100,6 +103,8 @@ public class GamePanel extends JPanel implements Runnable{
 		player.update();
 		om.update();
 		
+		System.out.println(mithril);
+		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -118,6 +123,12 @@ public class GamePanel extends JPanel implements Runnable{
 		
 	}
 	
+	public int searchObj(SuperObject object) {
+		for(int i = 0; i < obj.length; i++) {
+			if(obj[i] == object) return i;
+		}
+		return -1;
+	}
 	
 	public void playMusic(int i) {
 		sound.setFile(i);

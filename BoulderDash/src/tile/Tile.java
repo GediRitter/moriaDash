@@ -6,7 +6,8 @@ public class Tile {
 	
 	public String name;
 	public BufferedImage image;
-	public boolean collision = false; 
+	public boolean collisionObj = false; 
+	public boolean collisionPlayer = false;
 	public boolean removeable = false;
 	public boolean isObj = false;
 

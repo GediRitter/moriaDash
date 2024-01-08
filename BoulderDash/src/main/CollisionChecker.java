@@ -24,22 +24,22 @@ public class CollisionChecker {
 		switch(ent.direction) {
 		
 		case "up":
-			if(tileAbove.collision) ent.blocked = true;
+			if(tileAbove.collisionPlayer) ent.blocked = true;
 			if(tileAbove.removeable) ent.dirt = true;
 			break;
 			
 		case "down":
-			if(tileBeneath.collision) ent.blocked = true;
+			if(tileBeneath.collisionPlayer) ent.blocked = true;
 			if(tileBeneath.removeable) ent.dirt = true;
 			break;
 			
 		case "left":
-			if(tileLeft.collision) ent.blocked = true;
+			if(tileLeft.collisionPlayer) ent.blocked = true;
 			if(tileLeft.removeable) ent.dirt = true;
 			break;
 			
 		case "right":
-			if(tileRight.collision) ent.blocked = true;
+			if(tileRight.collisionPlayer) ent.blocked = true;
 			if(tileRight.removeable) ent.dirt = true;
 			break;
 		}
@@ -54,8 +54,8 @@ public class CollisionChecker {
 		Tile leftDown = gp.tm.tile[gp.tm.mapTileNum[obj.col - 1][obj.row + 1]];
 		Tile rightDown = gp.tm.tile[gp.tm.mapTileNum[obj.col + 1][obj.row + 1]];
 	
-
-		if(tileBeneath.collision) {
+		
+		if(tileBeneath.collisionObj) {
 			obj.blocked = true;
 			obj.falling = false;
 		}
@@ -66,14 +66,14 @@ public class CollisionChecker {
 		
 		
 		if(!tileBeneath.isObj && tileBeneath.name != "bricks") obj.blockedLeft = true;
-		else if(tileLeft.collision) obj.blockedLeft = true;
-		else if(leftDown.collision) obj.blockedLeft = true;
+		else if(tileLeft.collisionObj) obj.blockedLeft = true;
+		else if(leftDown.collisionObj) obj.blockedLeft = true;
 		else if(isPlayer(obj.col, obj.row, -1, 0)) obj.blockedLeft = true;
 		else if(isPlayer(obj.col, obj.row, -1, 1)) obj.blockedLeft = true;
 		
 		if(!tileBeneath.isObj && tileBeneath.name != "bricks") obj.blockedRight = true;
-		else if(tileRight.collision)obj.blockedRight = true;
-		else if(rightDown.collision) obj.blockedRight = true;
+		else if(tileRight.collisionObj)obj.blockedRight = true;
+		else if(rightDown.collisionObj) obj.blockedRight = true;
 		else if(isPlayer(obj.col, obj.row, 1, 0)) obj.blockedRight = true;
 		else if(isPlayer(obj.col, obj.row, 1, 1)) obj.blockedRight = true;
 			
@@ -89,6 +89,7 @@ public class CollisionChecker {
 		else return false;
 	}
 	
-
-
+	public void collect(SuperObject obj) {
+			if(!obj.falling && isPlayer(obj.col, obj.row, 0, 0)) obj.collect();
+	}
 }

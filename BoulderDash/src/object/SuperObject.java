@@ -27,4 +27,9 @@ public class SuperObject {
 		
 	}
 
+	public void collect() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
