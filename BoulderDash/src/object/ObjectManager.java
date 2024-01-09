@@ -55,6 +55,12 @@ public class ObjectManager {
 		
 	}
 	
+	public void emptyObj() {
+		for(int i = 0; i < gp.obj.length; i++) {
+			gp.obj[i] = null;
+		}
+	}
+	
 	public void update() {
 		for(int i = 0; i < gp.obj.length; i++) {
 			if(gp.obj[i] != null)gp.obj[i].update();

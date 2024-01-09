@@ -24,7 +24,6 @@ public class TileManager {
 		mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
 		
 		getTileImages();
-		loadMap("/maps/moriaFirstStage.txt");
 	}
 	
 	public void getTileImages() {
@@ -67,6 +66,18 @@ public class TileManager {
 			tile[5].name = "mithril";
 			tile[5].isObj = true;
 			
+			tile[6] = new Tile();
+			tile[6].image = ImageIO.read(getClass().getResourceAsStream("/tile/void.png"));
+			tile[6].collisionObj = true;
+			tile[6].name = "spawn";
+			tile[6].isObj = true;
+			
+			tile[7] = new Tile();
+			tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tile/wall.png"));
+			tile[7].collisionObj = true;
+			tile[7].name = "goal";
+			tile[7].isObj = true;
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +103,10 @@ public class TileManager {
 					
 					int num = Integer.parseInt(numbers[col]);
 					
-//					if(num == 4) num = 0;
+					if(num == 6) {
+						gp.spawnX = col * gp.tileSize;
+						gp.spawnY = row * gp.tileSize;
+					}
 					
 					mapTileNum[col][row] = num;
 					col++;

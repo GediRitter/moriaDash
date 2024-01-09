@@ -47,6 +47,9 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//STATS
 	public int mithril = 0;
+	public int mithrilGoal;
+	public int level = 1;
+	public int spawnX, spawnY;
 	
 	public GamePanel() {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -57,8 +60,27 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void setupGame() {
-		om.loadObj();
+		loadLevel(level);
 		playMusic(0);
+	}
+	
+	public void loadLevel(int level) {
+		switch(level) {
+		case 1:
+			tm.loadMap("/maps/moriaFirstStage.txt");
+			mithrilGoal = 11;
+			break;
+		case 2:
+			tm.loadMap("/maps/moriaSecondStage.txt");
+			mithrilGoal = 10;
+			break;
+		}
+		
+		om.emptyObj();
+		om.loadObj();
+		player.x = spawnX;
+		player.y = spawnY;
+		
 	}
 	
 	public void startGameThread() {
@@ -102,6 +124,8 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		player.update();
 		om.update();
+		
+		if(mithril == mithrilGoal) loadLevel(level + 1);
 		
 		System.out.println(mithril);
 		
