@@ -66,6 +66,8 @@ public class Rock extends SuperObject {
 				positionCounter = 0;
 			}
 		}
+		
+		gp.checker.kill(this);
 	}
 	
 	public void draw(Graphics2D g2) {

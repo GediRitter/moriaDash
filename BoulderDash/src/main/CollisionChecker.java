@@ -94,6 +94,13 @@ public class CollisionChecker {
 	}
 	
 	public void collect(SuperObject obj) {
-			if(!obj.falling && isPlayer(obj.col, obj.row, 0, 0)) obj.collect();
+		if(isPlayer(obj.col, obj.row, 0, 0)) {
+			if(!obj.falling) obj.collect();
+			else gp.player.die();
+		}
+	}
+	
+	public void kill(SuperObject obj) {
+		if(isPlayer(obj.col, obj.row, 0, 0) && obj.falling) gp.player.die();
 	}
 }

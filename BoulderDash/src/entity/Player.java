@@ -204,8 +204,11 @@ public class Player extends Entity {
 		
 		gp.playSE(1);
 		dirt = false;
-		
-		
+
+	}
+	
+	public void die() {
+		gp.loadLevel(gp.level);
 	}
 
 }
