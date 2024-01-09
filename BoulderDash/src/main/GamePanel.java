@@ -125,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable{
 		player.update();
 		om.update();
 		
-		if(mithril == mithrilGoal) loadLevel(level + 1);
+		if(mithril == mithrilGoal) tm.goalAchieved();
 		
 		System.out.println(mithril);
 		

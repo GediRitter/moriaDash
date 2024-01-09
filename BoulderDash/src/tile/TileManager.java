@@ -75,6 +75,7 @@ public class TileManager {
 			tile[7] = new Tile();
 			tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tile/wall.png"));
 			tile[7].collisionObj = true;
+			tile[7].collisionPlayer = true;
 			tile[7].name = "goal";
 			tile[7].isObj = true;
 			
@@ -122,6 +123,16 @@ public class TileManager {
 			
 		}
 		
+	}
+	
+	public void goalAchieved() {
+		tile[7].collisionPlayer = false;
+		try {
+			tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tile/void.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void draw(Graphics2D g2) {

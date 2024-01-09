@@ -20,6 +20,9 @@ public class CollisionChecker {
 		Tile tileBeneath = gp.tm.tile[gp.tm.mapTileNum[ent.col][ent.row + 1]];
 		Tile tileLeft = gp.tm.tile[gp.tm.mapTileNum[ent.col - 1][ent.row]];
 		Tile tileRight = gp.tm.tile[gp.tm.mapTileNum[ent.col + 1][ent.row]];
+		Tile tileHere = gp.tm.tile[gp.tm.mapTileNum[ent.col][ent.row]];
+		
+		if(tileHere.name == "goal") gp.loadLevel(gp.level + 1);
 		
 		switch(ent.direction) {
 		
@@ -43,6 +46,7 @@ public class CollisionChecker {
 			if(tileRight.removeable) ent.dirt = true;
 			break;
 		}
+		
 	}
 	
 	public void checkCollisionObj(SuperObject obj) {
