@@ -135,6 +135,16 @@ public class TileManager {
 		}
 	}
 	
+	public void goalUnachieved() {
+		tile[7].collisionPlayer = true;
+		try {
+			tile[7].image = ImageIO.read(getClass().getResourceAsStream("/tile/wall.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void draw(Graphics2D g2) {
 		
 		int col = 0;

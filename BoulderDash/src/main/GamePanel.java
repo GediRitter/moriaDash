@@ -65,6 +65,9 @@ public class GamePanel extends JPanel implements Runnable{
 	}
 	
 	public void loadLevel(int level) {
+		
+		mithril = 0;
+		tm.goalUnachieved();
 		switch(level) {
 		case 1:
 			tm.loadMap("/maps/moriaFirstStage.txt");

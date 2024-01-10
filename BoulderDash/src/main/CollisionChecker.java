@@ -22,7 +22,10 @@ public class CollisionChecker {
 		Tile tileRight = gp.tm.tile[gp.tm.mapTileNum[ent.col + 1][ent.row]];
 		Tile tileHere = gp.tm.tile[gp.tm.mapTileNum[ent.col][ent.row]];
 		
-		if(tileHere.name == "goal") gp.loadLevel(gp.level + 1);
+		if(tileHere.name == "goal") {
+			gp.level++;
+			gp.loadLevel(gp.level);
+		}
 		
 		switch(ent.direction) {
 		
