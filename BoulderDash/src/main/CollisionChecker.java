@@ -132,6 +132,11 @@ public class CollisionChecker {
 	}
 	
 	public void kill(SuperObject obj) {
-		if(isPlayer(obj.col, obj.row, 0, 0) && obj.fallingCount > 0) gp.player.die();
+		if(isPlayer(obj.col, obj.row, 0, 0) && obj.fallingCount > 0) {
+			gp.tm.mapTileNum[obj.col][obj.row] = 0;
+			gp.obj[gp.searchObj(obj)] = null;
+			gp.player.die();
+			
+		}
 	}
 }

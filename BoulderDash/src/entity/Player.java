@@ -21,6 +21,7 @@ public class Player extends Entity {
 	public int keyCode;
 	
 	
+	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		this.gp = gp;
 		this.keyH = keyH;
@@ -208,7 +209,34 @@ public class Player extends Entity {
 	}
 	
 	public void die() {
+		
+		
+		explode();
+		gp.repaint();
+		gp.sleep();
 		gp.loadLevel(gp.level);
+	}
+	
+	public void explode() {
+		
+		Tile tileAbove = gp.tm.tile[gp.tm.mapTileNum[col][row - 1]];
+		Tile tileBeneath = gp.tm.tile[gp.tm.mapTileNum[col][row + 1]];
+		Tile tileLeft = gp.tm.tile[gp.tm.mapTileNum[col - 1][row]];
+		Tile tileRight = gp.tm.tile[gp.tm.mapTileNum[col + 1][row]];
+		Tile leftDown = gp.tm.tile[gp.tm.mapTileNum[col - 1][row - 1]];
+		Tile rightDown = gp.tm.tile[gp.tm.mapTileNum[col + 1][row - 1]];
+		Tile leftUp = gp.tm.tile[gp.tm.mapTileNum[col - 1][row + 1]];
+		Tile rightUp = gp.tm.tile[gp.tm.mapTileNum[col + 1][row + 1]];
+		
+		if(tileAbove.name != "wall") gp.tm.mapTileNum[col][row - 1] = 0;
+		if(tileBeneath.name != "wall") gp.tm.mapTileNum[col][row + 1] = 0;
+		if(tileLeft.name != "wall") gp.tm.mapTileNum[col - 1][row] = 0;
+		if(tileRight.name != "wall") gp.tm.mapTileNum[col + 1][row] = 0;
+		if(leftDown.name != "wall") gp.tm.mapTileNum[col - 1][row + 1] = 0;
+		if(rightDown.name != "wall") gp.tm.mapTileNum[col + 1][row + 1] = 0;
+		if(leftUp.name != "wall") gp.tm.mapTileNum[col - 1][row - 1] = 0;
+		if(rightUp.name != "wall") gp.tm.mapTileNum[col + 1][row - 1] = 0;
+		
 	}
 
 }
