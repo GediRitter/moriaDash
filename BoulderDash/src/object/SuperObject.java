@@ -12,6 +12,8 @@ public class SuperObject {
 	public boolean blockedLeft = false;
 	public boolean blockedRight = false;
 	public boolean falling = true;
+	public int fallingCount = 0;
+	public boolean playerBeneath = false;
 	
 	public int x, y;
 	public int col, row;

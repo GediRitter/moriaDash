@@ -57,6 +57,8 @@ public class Mithril extends SuperObject {
 				else if(!blockedLeft) x -= gp.tileSize;
 				else if(!blockedRight) x += gp.tileSize;
 				
+				fallingCount++;
+				
 				gp.tm.mapTileNum[col][row] = 0;
 				
 				col = x / gp.tileSize;
