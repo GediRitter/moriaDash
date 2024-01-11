@@ -81,6 +81,8 @@ public class Mithril extends SuperObject {
 	}
 	
 	public void collect() {
+		gp.playSE(10);
+		
 		gp.mithril++;
 		gp.tm.mapTileNum[col][row] = 0;
 		gp.obj[gp.searchObj(this)] = null;

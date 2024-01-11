@@ -159,6 +159,7 @@ public class Player extends Entity {
 				removeDirt();
 				blocked = false;
 			}
+			else if(direction != "idle") gp.playSE(8);
 			
 			switch(direction) {
 			case "idle":
@@ -210,7 +211,13 @@ public class Player extends Entity {
 	
 	public void die() {
 		
+		gp.playSE(3);
+		gp.playSE(5);
+		gp.playSE(7);
+
+
 		
+		alive = false;
 		explode();
 		gp.repaint();
 		gp.sleep();
@@ -228,7 +235,9 @@ public class Player extends Entity {
 		Tile leftUp = gp.tm.tile[gp.tm.mapTileNum[col - 1][row + 1]];
 		Tile rightUp = gp.tm.tile[gp.tm.mapTileNum[col + 1][row + 1]];
 		
-		alive = false;
+		gp.playSE(4);
+		gp.playSE(6);
+
 		
 		if(tileAbove.name != "wall") gp.tm.mapTileNum[col][row - 1] = 0;
 		if(tileBeneath.name != "wall") gp.tm.mapTileNum[col][row + 1] = 0;
