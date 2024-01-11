@@ -81,6 +81,8 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		om.emptyObj();
 		om.loadObj();
+		
+		player.alive = true;
 		player.x = spawnX;
 		player.y = spawnY;
 		
@@ -146,7 +148,10 @@ public class GamePanel extends JPanel implements Runnable{
 		g2.dispose();
 	}
 	
-	public void setObjects() {
+	public void checkObjects() {
+		for(int i = 0; i < obj.length; i++) {
+			if(obj[i] != null) checker.checkExistence(obj[i]);
+		}
 		
 	}
 	

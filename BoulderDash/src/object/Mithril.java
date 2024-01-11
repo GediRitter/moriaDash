@@ -37,6 +37,7 @@ public class Mithril extends SuperObject {
 		super.y = y;
 		col = x / gp.tileSize;
 		row = y / gp.tileSize;
+		super.name = "mithril";
 	}
 	
 	public void update() {
@@ -70,9 +71,8 @@ public class Mithril extends SuperObject {
 			}
 		}
 		
-		
-		
 		gp.checker.collect(this);
+		
 		
 	}
 	
@@ -85,5 +85,6 @@ public class Mithril extends SuperObject {
 		gp.tm.mapTileNum[col][row] = 0;
 		gp.obj[gp.searchObj(this)] = null;
 	}
+	
 }
 

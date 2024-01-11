@@ -86,11 +86,14 @@ public class CollisionChecker {
 		if(tileBeneath.collisionObj) {
 			obj.blocked = true;
 			obj.fallingCount = 0;
+			obj.playerBeneath = false;
 		}
 		else if(isPlayer(obj.col, obj.row, 0, 1) && obj.fallingCount == 0) {
 			obj.blocked = true;
 			obj.fallingCount = 0;
 		}
+		else if(isPlayer(obj.col, obj.row, 0, 1)) obj.playerBeneath = true;
+		else obj.playerBeneath = false;
 		
 		
 		if(!tileBeneath.isObj && tileBeneath.name != "bricks") obj.blockedLeft = true;
@@ -126,17 +129,30 @@ public class CollisionChecker {
 	
 	public void collect(SuperObject obj) {
 		if(isPlayer(obj.col, obj.row, 0, 0)) {
-			if(obj.fallingCount == 0) obj.collect();
-			else gp.player.die();
+			if(obj.fallingCount > 0 && obj.playerBeneath)  {
+				gp.tm.mapTileNum[obj.col][obj.row] = 0;
+				gp.obj[gp.searchObj(obj)] = null;
+				gp.player.die();
+			}
+			else obj.collect();
 		}
 	}
 	
 	public void kill(SuperObject obj) {
-		if(isPlayer(obj.col, obj.row, 0, 0) && obj.fallingCount > 0) {
+		if(isPlayer(obj.col, obj.row, 0, 0) && obj.fallingCount > 0 && obj.playerBeneath) {
 			gp.tm.mapTileNum[obj.col][obj.row] = 0;
 			gp.obj[gp.searchObj(obj)] = null;
 			gp.player.die();
 			
+		}
+	}
+	
+	public void checkExistence(SuperObject obj) {
+		Tile currentTile = gp.tm.tile[gp.tm.mapTileNum[obj.col][obj.row]];
+		
+		if(currentTile.name != obj.name) {
+			gp.tm.mapTileNum[obj.col][obj.row] = 0;
+			gp.obj[gp.searchObj(obj)] = null;
 		}
 	}
 }

@@ -36,6 +36,7 @@ public class Rock extends SuperObject {
 		super.y = y;
 		col = x / gp.tileSize;
 		row = y / gp.tileSize;
+		super.name = "rock";
 	}
 	
 	public void update() {

@@ -19,7 +19,7 @@ public class Player extends Entity {
 	
 	public boolean keyPressed;
 	public int keyCode;
-	
+	public boolean alive;
 	
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -141,7 +141,7 @@ public class Player extends Entity {
 			break;
 		}
 		
-		g2.drawImage(image, x, y ,gp.tileSize, gp.tileSize, null);
+		if(alive) g2.drawImage(image, x, y ,gp.tileSize, gp.tileSize, null);
 	}
 	
 	public void animation() {
@@ -228,6 +228,8 @@ public class Player extends Entity {
 		Tile leftUp = gp.tm.tile[gp.tm.mapTileNum[col - 1][row + 1]];
 		Tile rightUp = gp.tm.tile[gp.tm.mapTileNum[col + 1][row + 1]];
 		
+		alive = false;
+		
 		if(tileAbove.name != "wall") gp.tm.mapTileNum[col][row - 1] = 0;
 		if(tileBeneath.name != "wall") gp.tm.mapTileNum[col][row + 1] = 0;
 		if(tileLeft.name != "wall") gp.tm.mapTileNum[col - 1][row] = 0;
@@ -236,6 +238,8 @@ public class Player extends Entity {
 		if(rightDown.name != "wall") gp.tm.mapTileNum[col + 1][row + 1] = 0;
 		if(leftUp.name != "wall") gp.tm.mapTileNum[col - 1][row - 1] = 0;
 		if(rightUp.name != "wall") gp.tm.mapTileNum[col + 1][row - 1] = 0;
+		
+		gp.checkObjects();
 		
 	}
 
