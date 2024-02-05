@@ -20,6 +20,7 @@ public class Player extends Entity {
 	public boolean keyPressed;
 	public int keyCode;
 	public boolean alive;
+	public boolean arrKeys;
 	
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
@@ -70,19 +71,59 @@ public class Player extends Entity {
 		if(keyH.keyPressed) {
 			keyPressed = true;
 			dirt = false;
+			pushLeft = false;
+			pushRight = false;
 		}
 		
 		if(keyPressed && keyH.keyCode != 0) keyCode = keyH.keyCode;
 		
 		
-		if(keyCode == KeyEvent.VK_W) direction = "up";
-		if(keyCode == KeyEvent.VK_S) direction = "down";
-		if(keyCode == KeyEvent.VK_A) direction = "left";		
-		if(keyCode == KeyEvent.VK_D) direction = "right"; 
-		if(keyCode == 0) direction = "idle"; 
+		if(keyCode == KeyEvent.VK_W) {
+			direction = "up";
+//			arrKeys = false;
+		}
+		if(keyCode == KeyEvent.VK_UP) {
+			direction = "up";
+			arrKeys = true;
+		}
+		if(keyCode == KeyEvent.VK_S) {
+			direction = "down";
+//			arrKeys = false;
+		}
+		if(keyCode == KeyEvent.VK_DOWN) {
+			direction = "down";
+			arrKeys = true;
+		}
+		if(keyCode == KeyEvent.VK_A) {
+			direction = "left";	
+//			arrKeys = false;
+		}
+		if(keyCode == KeyEvent.VK_LEFT) {
+			direction = "left";
+			arrKeys = true;
+			
+		}
+		if(keyCode == KeyEvent.VK_D) {
+			direction = "right"; 
+//			arrKeys = false;
+		}
+		if(keyCode == KeyEvent.VK_RIGHT) {
+			direction = "right";
+			arrKeys = true;
+		}
+		if(keyCode == 0) {
+			direction = "idle"; 
+			arrKeys = false;
+		}
 		
 		gp.checker.checkCollision(this);
-		updatePosition();
+		if(!arrKeys)updatePosition();
+		else {
+			if(dirt)removeDirt();
+			direction = "idle";
+			keyPressed = false;
+			keyCode = 0;
+		}
 		animation();
 		
 		

@@ -57,6 +57,7 @@ public class TileManager {
 			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tile/void.png"));
 			tile[4].collisionPlayer = true;
 			tile[4].collisionObj = true;
+			tile[4].moveable = true;
 			tile[4].name = "rock";
 			tile[4].isObj = true;
 			

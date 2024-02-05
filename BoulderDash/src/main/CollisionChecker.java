@@ -42,11 +42,13 @@ public class CollisionChecker {
 		case "left":
 			if(tileLeft.collisionPlayer) ent.blocked = true;
 			if(tileLeft.removeable) ent.dirt = true;
+			if(tileAbove.moveable) ent.pushLeft = true;
 			break;
 			
 		case "right":
 			if(tileRight.collisionPlayer) ent.blocked = true;
 			if(tileRight.removeable) ent.dirt = true;
+			if(tileAbove.moveable) ent.pushRight = true;
 			break;
 		}
 		
@@ -107,6 +109,9 @@ public class CollisionChecker {
 		else if(rightDown.collisionObj) obj.blockedRight = true;
 		else if(isPlayer(obj.col, obj.row, 1, 0)) obj.blockedRight = true;
 		else if(isPlayer(obj.col, obj.row, 1, 1)) obj.blockedRight = true;
+		
+		if(isPlayer(obj.col, obj.row, 1, 0) && gp.player.pushLeft) obj.slide = true;
+		if(isPlayer(obj.col, obj.row, -1, 0) && gp.player.pushLeft) obj.slide = true;
 			
 
 	}

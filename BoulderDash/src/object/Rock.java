@@ -44,6 +44,7 @@ public class Rock extends SuperObject {
 		blocked = false;
 		blockedLeft = false;
 		blockedRight = false;
+		slide = false;
 		
 		gp.checker.checkCollisionObj(this);
 		
@@ -58,6 +59,26 @@ public class Rock extends SuperObject {
 				else if(!blockedRight) x += gp.tileSize;
 				
 				fallingCount++;
+				
+				gp.tm.mapTileNum[col][row] = 0;
+				
+				col = x / gp.tileSize;
+				row = y / gp.tileSize;
+				
+				gp.tm.mapTileNum[col][row] = 4;
+				
+				positionCounter = 0;
+			}
+		}
+		
+		if(slide) {
+			positionCounter++;
+			
+			if(positionCounter == 3) {
+				
+				if(!blockedLeft) x -= gp.tileSize;
+				else if(!blockedRight) x += gp.tileSize;
+				
 				
 				gp.tm.mapTileNum[col][row] = 0;
 				

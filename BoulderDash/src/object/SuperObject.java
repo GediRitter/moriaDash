@@ -14,6 +14,7 @@ public class SuperObject {
 	public boolean falling = true;
 	public int fallingCount = 0;
 	public boolean playerBeneath = false;
+	public boolean slide = false;
 	
 	public int x, y;
 	public int col, row;

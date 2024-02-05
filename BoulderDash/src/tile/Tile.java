@@ -9,6 +9,7 @@ public class Tile {
 	public boolean collisionObj = false; 
 	public boolean collisionPlayer = false;
 	public boolean removeable = false;
+	public boolean moveable = false;
 	public boolean isObj = false;
 
 }

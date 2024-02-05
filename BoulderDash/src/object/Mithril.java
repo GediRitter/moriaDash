@@ -24,7 +24,7 @@ public class Mithril extends SuperObject {
 		
 		try {
 			
-			image = ImageIO.read(getClass().getResourceAsStream("/objects/mithrilUnfinished.png"));
+			image = ImageIO.read(getClass().getResourceAsStream("/objects/mithril.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -17,5 +17,6 @@ public class Entity {
 	
 	public boolean blocked = false;
 	public boolean dirt;
+	public boolean pushLeft, pushRight;
 
 }
